@@ -1,0 +1,28 @@
+<view class="videoMain">
+	<view class="wrapper" bindtap="clickWrapper">
+		<member-screen
+		 wx:for="{{showMember}}"
+		 wx:key="key"
+		 member="{{item}}"
+		 cameraDirection="{{cameraDirection}}"
+		 isFullScreen="{{isFullScreen}}"
+		 pushUrl="{{pushUrl}}"
+		 mainVenueId="{{mainVenueId}}"
+		 mainScreenWidth="{{mainScreenWidth}}"
+		 safeHeight="{{safeHeight}}"
+		 bind:clickScreen="clickScreen"
+		/>
+	</view>
+	<live-player
+	 wx:if="{{audioPullUrl}}"
+	 autoplay="{{true}}"
+	 min-cache="0.2"
+	 max-cache="0.6"
+	 src="{{audioPullUrl}}"
+	 bindstatechange="onStateChange"
+	 mode="RTC"
+	 id="_audio-live-player"
+	 class="audioPullPlayer"
+	/>
+</view>
+

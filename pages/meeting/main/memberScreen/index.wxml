@@ -1,0 +1,82 @@
+<view class="wrapper {{member.isMain ? 'mainScreen' : 'sideScreenItem'}}" style="{{style}}">
+	<view class="wrapper" style="margin-left: {{member.isMain ? '0' : mainScreenWidth + 'px'}}; width: {{isFullScreen ? '100%' : member.isMain ? mainScreenWidth + 'px' : 'calc(100% - ' + mainScreenWidth + 'px)'}};" catchtap="onClickScreen">
+		<!-- 自己的画面 -->
+		<view wx:if="{{member.isSelf}}" class="avatarWrapper {{member.isVideoMute ? '' : 'muteVideoWrapper'}}">
+			<image
+			 wx:if="{{!!member.avatar}}"
+			 class="avatar"
+			 src="{{member.avatar}}"
+			 mode="aspectFill"
+			/>
+			<view wx:else class="defaultAvatar">{{ member.defaultAvatar }}</view>
+		</view>
+		<live-pusher
+		 wx:if="{{member.isSelf && pushUrl}}"
+		 id="{{member.endpointId}}"
+		 enable-camera="{{!member.isVideoMute}}"
+		 enable-mic="{{!member.isAudioMute}}"
+		 class="{{member.isVideoMute && 'hide'}}"
+		 autopush="{{true}}"
+		 url="{{pushUrl}}"
+		 bindstatechange="onPusherStateChange"
+		 device-position="{{cameraDirection}}"
+		 max-bitrate="500"
+		 mode="RTC"
+		/>
+		<!-- 参会人的画面 -->
+		<view wx:if="{{!member.isSelf && !member.isPresenter}}" class="avatarWrapper">
+			<image
+			 wx:if="{{(member.isVideoMute || isLoading) && !member.isPresenter && !!member.avatar}}"
+			 class="avatar"
+			 src="{{member.avatar}}"
+			 mode="aspectFill"
+			/>
+			<view wx:elif="{{!member.isPresenter}}" class="defaultAvatar">{{ member.defaultAvatar }}</view>
+		</view>
+		<!-- 共享屏幕loading -->
+		<view wx:if="{{isLoading && member.isPresenter}}" class="loadingView">
+			<image src="../../../../images/loading.png" />
+			<text class="name">努力加载中...</text>
+		</view>
+		<view wx:if="{{!member.isSelf && ((!member.isVideoMute && !!videoSrc) || member.isPresenter)}}" class="playerWrapper {{isLoading && 'hide'}}" style="height: 100%; width: 100%;">
+			<live-player
+			 id="{{member.key}}"
+			 wx:if="{{showPlayer}}"
+			 muted
+			 autoplay
+			 mode="live"
+			 min-cache="0.2"
+			 object-fit="{{member.isPresenter ? 'contain' : 'fillCrop' }}"
+			 max-cache="0.6"
+			 bindstatechange="onPlayerStateChange"
+			 class="{{isLoading && 'hide'}}"
+			 src="{{videoSrc}}"
+			/>
+		</view>
+		<!-- 主画面的标签 -->
+		<!-- 主画面 共享屏幕 -->
+		<view wx:if="{{member.isMain && member.isPresenter}}">
+			<view class="label shareLabel" style="transform: translateY(-{{ safeHeight / 2 }}Px)">
+				<view class="label shareItem">
+					<image class="audioIcon" src="../../../../images/share-screen.svg" />
+					<text class="name">共享人：{{member.name}}</text>
+				</view>
+			</view>
+		</view>
+		<!-- 主画面 非共享屏幕 -->
+		<view wx:if="{{member.isMain && !member.isPresenter}}" style="transform: translateY(-{{member.isVideoMute || isLoading ? 0 : safeHeight / 2}}Px)" class="label mainLabel {{member.isVideoMute || isLoading ? 'labelMute' : 'labelUnmute'}}">
+			<view class="hostLabel" wx:if="{{member.roleType === EROLE.ORGANIZER || member.roleType === EROLE.HOST}}">主持人</view>
+			<view class="mainVenueLabel" wx:if="{{member.endpointId === mainVenueId}}">主会场</view>
+			<image class="audioIcon" src="{{ member.isAudioMute ? '../../../../images/screen-audio-mute.png' : '../../../../images/screen-audio-unmute.png' }}" />
+			<text class="name">{{member.name}}</text>
+		</view>
+		<!-- 非主画面的标签 -->
+		<view wx:if="{{!member.isMain}}" class="label labelUnmute">
+			<view class="hostLabel" wx:if="{{member.roleType === EROLE.ORGANIZER || member.roleType === EROLE.HOST}}">主持人</view>
+			<view class="mainVenueLabel" wx:if="{{member.endpointId === mainVenueId}}">主会场</view>
+			<image class="audioIcon" src="{{ member.isAudioMute ? '../../../../images/screen-audio-mute.png' : '../../../../images/screen-audio-unmute.png' }}" />
+			<text class="name">{{member.name}}</text>
+		</view>
+	</view>
+</view>
+

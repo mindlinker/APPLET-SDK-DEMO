@@ -1,0 +1,19 @@
+{
+  "navigationBarTitleText": "迈聆会议",
+  "pageOrientation": "landscape",
+  "navigationStyle": "custom",
+  "navigationBarBackgroundColor": "#ffffff",
+  "backgroundColor": "#ffffff",
+  "backgroundColorTop": "#ffffff",
+  "backgroundColorBottom": "#ffffff",
+  "navigationBarTextStyle": "white",
+  "disableScroll": true,
+  "usingComponents": {
+    "top-bar": "./topBar/index",
+    "control-bar": "./controlBar/index",
+    "main": "./main/index",
+    "member-panel": "./memberPanel/index",
+    "detail-panel": "./detailPanel/index",
+    "footer-menu": "./footerMenu/index"
+  }
+}

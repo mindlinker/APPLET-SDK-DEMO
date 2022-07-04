@@ -1,0 +1,20 @@
+<view class="_footer-menu-wrapper" bindtap="onClickWrapper" style="height: {{show ? '100%' : '0'}}">
+	<view class="_footer-menu-panel" style="transform: {{show ? 'translateY(0%)' : 'translateY(100%)'}}">
+		<view class="_footer-menu-title" wx:if="{{!!title}}">{{title}}</view>
+		<view
+		 wx:for="{{menu}}"
+		 wx:key="value"
+		 class="_footer-menu-item"
+		 data-id="{{item.id}}"
+		 data-data="{{item.data}}"
+		 bindtap="clickMenu"
+		 style="color: {{item.color}}"
+		>
+			{{item.label}}
+		</view>
+		<view class="_footer-menu-item" bindtap="hide" style="height: {{safeHeight / 2 + 50 + 'Px'}}; padding-bottom: {{safeHeight / 2 + 'Px'}}">
+			取消
+		</view>
+	</view>
+</view>
+

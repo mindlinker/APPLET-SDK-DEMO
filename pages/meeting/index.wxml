@@ -1,0 +1,95 @@
+<view class="pageContainer meetingMain">
+	<top-bar
+	 height="{{topHeight}}"
+	 locked="{{meetingOptions.locked}}"
+	 bind:back="showExitMenu"
+	 bind:clickTitle="showDetailPanel"
+	/>
+	<view class="meetingWrapper" style="height: calc(100% - {{topHeight}}px)">
+		<main
+		 member="{{memberList}}"
+		 cameraDirection="{{cameraDirection}}"
+		 audioPullUrl="{{audioPullUrl}}"
+		 pushUrl="{{pushUrl}}"
+		 safeHeight="{{safeHeight}}"
+		 mainScreenWidth="{{mainScreenWidth}}"
+		 mainVenueId="{{mainVenueId}}"
+		 topHeight="{{topHeight}}"
+		 presenter="{{presenter}}"
+		 viewState="{{viewState}}"
+		 fixFirstEndpointId="{{fixFirstEndpointId}}"
+		 isFullScreen="{{isFullScreen}}"
+		 bind:clickScreen="clickScreen"
+		/>
+		<!-- 侧边栏 -->
+		<member-panel
+		 bind:hide="hideMemberPanel"
+		 show="{{isShowMemberPanel}}"
+		 memberList="{{memberList}}"
+		 currentEndpointId="{{currentEndpointId}}"
+		 mainVenueId="{{mainVenueId}}"
+		 presenter="{{presenter}}"
+		 fixFirstEndpointId="{{fixFirstEndpointId}}"
+		 bind:showMenu="showMenu"
+		/>
+		<detail-panel
+		 bind:hide="hideDetailPanel"
+		 show="{{isShowDetailPanel}}"
+		 name="{{meetingInfo.name}}"
+		 password="{{meetingInfo.password}}"
+		 meetingCode="{{meetingInfo.meetingCode}}"
+		/>
+	</view>
+	<control-bar
+	 safeHeight="{{safeHeight}}"
+	 show="{{isShowControlBar}}"
+	 isAudioMute="{{isAudioMute}}"
+	 isVideoMute="{{isVideoMute}}"
+	 memberCount="{{memberList.length}}"
+	 bind:showMemberPanel="showMemberPanel"
+	 bind:click="showControlBar"
+	 bind:exit="showExitMenu"
+	 bind:switchMic="switchMic"
+	 bind:switchCamera="switchCamera"
+	 bind:switchCameraDirection="switchCameraDirection"
+	/>
+	<!-- 底部菜单 -->
+	<footer-menu
+	 show="{{isFooterMenuShow}}"
+	 menu="{{footerMenu}}"
+	 title="{{footerMenuTitle}}"
+	 safeHeight="{{safeHeight}}"
+	 bind:hide="hideFooterMenu"
+	 bind:clickMenu="onClickMenu"
+	/>
+	<!-- 对话框 -->
+	<view class="_modal-wrapper" wx:if="{{modal.show}}">
+		<view class="_modal-container confirmModal">
+			<view class="_modal-modalMainPanel">
+				<view class="_modal-title">{{modal.title}}</view>
+			</view>
+			<view class="_modal-modalDvide" />
+			<view class="_modal-confirmFooter">
+				<button class="_modal-cancelBtn _modal-button" bindtap="onModalCancel">{{modal.cancelText}}</button>
+				<button
+				 wx:if="{{modal.type === MODAL_TYPE.MIC_SETTING || modal.type === MODAL_TYPE.CAMERA_SETTING}}"
+				 open-type="openSetting"
+				 class="_modal-confirmBtn _modal-button"
+				 bindtap="onModalConfirm"
+				>{{modal.confirmText}}
+				</button>
+				<button wx:else class="_modal-confirmBtn _modal-button" bindtap="onModalConfirm">{{modal.confirmText}}</button>
+			</view>
+		</view>
+	</view>
+	<!-- 不支持白板tips -->
+	<view class="unsupportTips" wx:if="{{isShowUnsupportWhiteBoard}}">
+		<text style="mainText">小程序暂不支持互动白板功能，欢迎下载APP体验更多功能</text>
+		<image class="closeIcon" bindtap="hideTips" src="../../images/x.svg" />
+	</view>
+	<!-- toast -->
+	<view class="_toast-container {{toast.position === 'bottom' ? '_toast-bottom' : '_toast-middle'}} {{toast.show ? '' : '_toast-hidden'}}">
+		<text class="_title">{{toast.title}}</text>
+	</view>
+</view>
+

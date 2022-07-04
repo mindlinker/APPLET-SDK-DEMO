@@ -1,0 +1,10 @@
+{
+  "name": "mindlinker-applet-demo",
+  "version": "1.0.0",
+  "description": "MindLinker applet demo",
+  "dependencies": {
+    "ml-applet-sdk": "file:sdk"
+  },
+  "author": "MindLinker-FE",
+  "license": "ISC"
+}

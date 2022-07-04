@@ -1,0 +1,174 @@
+.wrapper {
+  width: 100%;
+  height: 100%;
+  background-color: #1a1a1a;
+  position: relative;
+  overflow: hidden;
+}
+.wrapper,
+.wrapper .loadingView {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.wrapper .loadingView image {
+  animation: loading 1.5s linear infinite;
+  width: 30rpx;
+  height: 30rpx;
+}
+.wrapper .loadingView .name {
+  margin-top: 9rpx;
+  color: #fff;
+  font-size: 14px;
+}
+.wrapper .avatarWrapper {
+  margin: 0 30rpx 9rpx;
+  width: 46rpx;
+  height: 46rpx;
+}
+.wrapper .avatarWrapper .avatar {
+  opacity: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.wrapper .avatarWrapper .defaultAvatar {
+  text-align: center;
+  background-color: #fff;
+  line-height: 46rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+.wrapper .label {
+  color: #fff;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.wrapper .label view {
+  font-size: 12px;
+  margin-right: 4px;
+  padding: 0 2px;
+  white-space: nowrap;
+  line-height: 1.3em;
+}
+.wrapper .label .hostLabel {
+  background-color: #ff6b00;
+}
+.wrapper .label .mainVenueLabel {
+  background-color: #3594f9;
+}
+.wrapper .label image {
+  width: 14px;
+  height: 14px;
+}
+.wrapper .label .audioIcon,
+.wrapper .mainLabel .audioIcon {
+  margin-right: 3rpx;
+}
+.wrapper .label .name {
+  max-width: 100px;
+  margin-left: 2rpx;
+  font-size: 14px;
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.wrapper .mainLabel .name {
+  max-width: 257rpx;
+}
+.wrapper .mainLabel.labelMute {
+  text-align: center;
+}
+.wrapper .mainLabel.labelMute .audioIcon {
+  margin-left: 0;
+}
+.wrapper .shareLabel {
+  position: absolute;
+  bottom: 0;
+  left: 17.3rpx;
+}
+.wrapper .shareLabel .shareItem {
+  padding: 3rpx 8rpx;
+  margin-right: 9rpx;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.wrapper .shareLabel .shareItem .name {
+  max-width: 153rpx;
+}
+.wrapper .shareLabel .audioIcon {
+  margin-right: 3rpx;
+}
+.wrapper .labelMute {
+  text-align: center;
+}
+.wrapper .labelUnmute {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 3rpx 8rpx;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.wrapper .mainLabel.labelUnmute {
+  margin-left: 10rpx;
+}
+.muteVideoWrapper {
+  display: none;
+}
+.playerWrapper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1a1a1a;
+}
+.hide {
+  position: absolute;
+  opacity: 0;
+  transform: translateY(-100%);
+  background-color: #1a1a1a;
+}
+
+.mainScreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 45;
+  background-color: #1a1a1a;
+}
+.mainScreen .shareScreenInfo {
+  position: absolute;
+  left: 15rpx;
+  bottom: 15rpx;
+  width: 35%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mainScreen .shareScreenInfo .mainSpeaker,
+.mainScreen .shareScreenInfo .presentInfo {
+  max-width: 300rpx;
+  color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sideScreenItem {
+  height: 33%;
+  margin-bottom: 0.15%;
+  margin-top: 0;
+  background-color: #1a1a1a;
+}
+
+.live-component {
+  background-color: #1a1a1a;
+}

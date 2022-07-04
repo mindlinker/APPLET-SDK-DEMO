@@ -1,0 +1,51 @@
+.controlBar {
+  position: absolute;
+  bottom: 0;
+  overflow: hidden;
+  width: 100%;
+  background-color: #2a2a2a;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  padding: 0 30rpx;
+  transition: all ease-in, 0.1s;
+  z-index: 90;
+}
+.controlBar .selfControlView {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.controlBar .selfControlView .controlItem {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-right: 32rpx;
+  font-size: 14px;
+}
+.controlBar .selfControlView .controlItem image {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin-right: 4.5rpx;
+}
+.controlBar .selfControlView .speakingRequesting {
+  color: #ff6b00;
+}
+.controlBar .exitControlItem {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  font-size: 16px;
+  color: #ff5151;
+}
+@media only screen and (max-width: 740px) {
+  .controlBar .selfControlView .controlItem {
+    margin-right: 22rpx;
+  }
+  .controlBar .selfControlView .controlItem image {
+    margin-right: 4rpx;
+  }
+}

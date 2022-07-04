@@ -1,0 +1,12 @@
+.videoMain {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  background-color: #1a1a1a;
+}
+
+.wrapper {
+  height: 100%;
+  position: relative;
+  background-color: #1a1a1a;
+}

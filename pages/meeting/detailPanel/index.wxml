@@ -1,0 +1,23 @@
+<view class="_drawer-wrapper-detail-panel" style="width: {{show ? '100%' : '0%'}}">
+	<view class="_drawer-wrapper-mask" bindtap="onClickMask" />
+	<view class="_drawer-side-panel detailWrapper" style="transition: {{translate ? 'none' : 'all ease-in 0.25s'}}; transform: {{translate ? ' translateX(' + translate + 'px)' : show ? 'translateX(0%)' : 'translateX(100%)'}}" bindtap="onClickPanel">
+		<view
+		 class="_drawer-side-icon"
+		 bindtouchstart="handleTouchStart"
+		 bindtouchmove="handleTouchMove"
+		 bindtouchend="handleTouchEnd"
+		/>
+		<view class="mainPanel">
+			<view class="title">{{name}}</view>
+			<view class="detailItem">
+				<text>会议号</text>
+				<text>{{showMeetingCode}}</text>
+			</view>
+			<view class="detailItem" wx:if="{{!!password}}">
+				<text>入会密码</text>
+				<text>{{password}}</text>
+			</view>
+		</view>
+	</view>
+</view>
+

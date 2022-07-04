@@ -1,0 +1,127 @@
+<!--index.wxml-->
+<view class="pageContainer">
+	<view class="meetingParams">
+		<view class="formItem">
+			<text class="formText">会议号</text>
+			<input
+			 value="{{ meetingCode }}"
+			 bindinput="onCodeInput"
+			 class="formInput"
+			 placeholder="请输入会议号"
+			 placeholder-class="placeholderClass"
+			 type="number"
+			/>
+		</view>
+		<view class="formItem">
+			<text class="formText">参会名称</text>
+			<input
+			 value="{{ name }}"
+			 bindinput="onMeetingNameInput"
+			 class="formInput"
+			 maxlength="30"
+			 placeholder="请输入参会名称"
+			 placeholder-class="placeholderClass"
+			 type="number"
+			/>
+		</view>
+		<view class="switchContainer">
+			<text class="switchText">开启麦克风</text>
+			<switch
+			 bindchange="switchMicrophone"
+			 checked="{{ microphoneActive }}"
+			 type="switch"
+			 class="switchBtn"
+			 color="#1ebe11"
+			/>
+		</view>
+		<view class="switchContainer">
+			<text class="switchText">开启摄像头</text>
+			<switch
+			 bindchange="switchCamera"
+			 checked="{{ cameraActive }}"
+			 type="switch"
+			 class="switchBtn"
+			 color="#1ebe11"
+			/>
+		</view>
+		<view class="btnContainer">
+			<!-- onGetPhoneNumber class show hide bindtap -->
+			<button
+			 bindgetphonenumber="onGetPhoneNumber"
+			 class="joinBtn {{ buttonType === 'register' ? 'show' : 'hide' }}"
+			 id="login-btn"
+			 disabled="{{ btnDisabled }}"
+			 open-type="getPhoneNumber"
+			 lang="zh_CN"
+			 type="primary"
+			>{{isJoining ? '正在加入...' : '加入会议'}}
+			</button>
+			<!-- class show hide loading -->
+			<button
+			 class="joinBtn {{ buttonType === 'register' ? 'hide' : 'show' }}"
+			 disabled="{{ btnDisabled }}"
+			 bindtap="joinMeeting"
+			 type="primary"
+			>{{isJoining ? '正在加入...' : '加入会议'}}
+			</button>
+		</view>
+	</view>
+	<view class="_modal-wrapper" wx:if="{{ showPasswordInput }}">
+		<view class="container _modal-container-portrait">
+			<text class="input__title">入会密码</text>
+			<view class="input__container">
+				<input
+				 class="input__input"
+				 focus="{{true}}"
+				 maxlength="6"
+				 type="number"
+				 password="{{!showPassword}}"
+				 value="{{password}}"
+				 bindinput="onPasswordInput"
+				 always-embed="{{true}}"
+				 type="number"
+				 placeholder-class="input__placeholderClass"
+				 placeholder="请输入会议密码"
+				/>
+				<image class="input__suffixIcon" bindtap="onSwitchShowPassword" src="{{ showPassword ? '../../images/show-password.png' : '../../images/hide-password.png'}}" />
+			</view>
+			<view class="input__errorContainer">
+				<text class="input__errorText">{{passwordWrong ? "密码输入错误" : ""}}</text>
+			</view>
+			<view class="btnWrapper">
+				<button class="cancelBtn" type="default" bindtap="onHidePasswordModal">取消</button>
+				<button
+				 class="confirmBtn"
+				 bindtap="onConfirmJoin"
+				 disabled="{{!password}}"
+				 type="default"
+				>确定
+				</button>
+			</view>
+		</view>
+	</view>
+	<!-- 对话框 -->
+	<view class="_modal-wrapper" wx:if="{{modal.show}}">
+		<view class="_modal-container _modal-container-portrait confirmModal">
+			<view class="_modal-modalMainPanel">
+				<view class="_modal-title">{{modal.title}}</view>
+			</view>
+			<view class="_modal-modalDvide" />
+			<view class="_modal-noticeFooter" wx:if="{{modal.mode === 'notice'}}">
+				<button class="_modal-noticeBtn _modal-button" bindtap="onModalConfirm">{{modal.confirmText}}</button>
+			</view>
+			<view class="_modal-confirmFooter" wx:else>
+				<button class="_modal-cancelBtn _modal-button" bindtap="onModalCancel">{{modal.cancelText}}</button>
+				<button
+				 wx:if="{{modal.type === MODAL_TYPE.MIC_AUTH}}"
+				 open-type="openSetting"
+				 class="_modal-confirmBtn _modal-button"
+				 bindtap="onModalConfirm"
+				>{{modal.confirmText}}
+				</button>
+				<button wx:else class="_modal-confirmBtn _modal-button" bindtap="onModalConfirm">{{modal.confirmText}}</button>
+			</view>
+		</view>
+	</view>
+</view>
+

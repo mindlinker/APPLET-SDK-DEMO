@@ -1,0 +1,11 @@
+<view class="topBar" style="height: {{height}}px">
+	<view class="exit" bindtap="back">
+		<image mode="scaleToFill" src="../../../images/left-arrow.png" />
+	</view>
+	<view class="title" bindtap="clickTitle">
+		<image wx:if="{{locked}}" class="lockIcon" src="../../../images/lock.svg" />
+		<text>迈聆会议</text>
+		<image mode="scaleToFill" src="../../../images/top-information.png" />
+	</view>
+</view>
+

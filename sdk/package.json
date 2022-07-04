@@ -1,0 +1,29 @@
+{
+  "name": "ml-applet-sdk",
+  "version": "1.0.0",
+  "description": "MindLinker applet sdk",
+  "main": "dist/index.js",
+  "typings": "dist/types/index.d.ts",
+  "scripts": {
+    "build-pro": "NODE_ENV=production BUILD_ENV=pro webpack -c ./build/webpack.config.js",
+    "build-test": "NODE_ENV=production BUILD_ENV=test webpack -c ./build/webpack.config.js",
+    "dev": "NODE_ENV=production BUILD_ENV=local webpack -c ./build/webpack.config.js --watch"
+  },
+  "author": "MindLinker-FE",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.18.2",
+    "@types/node": "^17.0.40",
+    "@typescript-eslint/eslint-plugin": "^5.27.0",
+    "@typescript-eslint/parser": "^5.27.0",
+    "babel-loader": "^8.2.5",
+    "eslint": "^8.17.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-webpack-plugin": "^3.1.1",
+    "ts-loader": "^9.3.0",
+    "typescript": "^4.7.3",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.9.2"
+  }
+}

@@ -1,0 +1,22 @@
+<view class="controlBar" bindtap="showControlBar" style="height: {{safeHeight / 2 + 50}} + 'Px'; paddingBottom: {{safeHeight / 2}} + 'Px'; transform: {{show ? 'translateY(0%)' : 'translateY(100%)'}}">
+	<view class="selfControlView">
+		<view class="controlItem" bindtap="switchMic">
+			<image src="{{isAudioMute ? '../../../images/control-audio-mute.png' : '../../../images/control-audio-unmute.png'}}" />
+			麦克风
+		</view>
+		<view class="controlItem" bindtap="switchCamera">
+			<image src="{{isVideoMute ? '../../../images/control-video-mute.png' : '../../../images/control-video-unmute.png'}}" />
+			摄像头
+		</view>
+		<view class="controlItem" bindtap="switchCameraDirection" wx:if="{{!isVideoMute}}">
+			<image src="../../../images/control-turn-camera.png" />
+			翻转摄像头
+		</view>
+		<view class="controlItem" bindtap="showMemberPanel">
+			<image src="../../../images/control-member.png" />
+			参会人({{memberCount}})
+		</view>
+	</view>
+	<view class="exitControlItem" bindtap="exitMeeting">离开会议</view>
+</view>
+

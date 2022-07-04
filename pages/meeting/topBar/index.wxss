@@ -1,0 +1,47 @@
+.topBar {
+  width: 750rpx;
+  overflow: hidden;
+  position: relative;
+  background-color: #2a2a2a;
+  color: #fff;
+  font-size: 18px;
+}
+.topBar .exit {
+  position: absolute;
+  left: 20rpx;
+  top: 0;
+  height: 100%;
+  z-index: 500;
+  width: 35rpx;
+  display: flex;
+  align-items: center;
+}
+.topBar .exit image {
+  height: 26px;
+  width: 18px;
+}
+.topBar .title {
+  text-align: center;
+  margin: 0 auto;
+  height: 100%;
+  width: 140rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.topBar .title text {
+  white-space: nowrap;
+}
+.topBar .title .lockIcon {
+  margin-right: 4rpx;
+}
+.topBar .title image {
+  margin-left: 4rpx;
+  width: 14px;
+  height: 14px;
+}
+.topBar .title .recIcon {
+  margin-right: 4rpx;
+  width: 14px;
+  height: 14px;
+}

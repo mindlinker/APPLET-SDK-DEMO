@@ -1,0 +1,57 @@
+<view class="_drawer-wrapper" style="width: {{show ? '100%' : '0%'}}">
+	<view class="_drawer-wrapper-mask" bindtap="onClickMask" />
+	<view class="_drawer-side-panel memberWrapper" style="transition: {{translate ? 'none' : 'all ease-in 0.25s'}}; transform: {{translate ? ' translateX(' + translate + 'px)' : show ? 'translateX(0%)' : 'translateX(100%)'}}" bindtap="onClickPanel">
+		<view
+		 class="_drawer-side-icon"
+		 bindtouchstart="handleTouchStart"
+		 bindtouchmove="handleTouchMove"
+		 bindtouchend="handleTouchEnd"
+		/>
+		<view class="title">参会人({{memberList.length}})</view>
+		<scroll-view
+		 wx:if="{{show}}"
+		 class="memberList"
+		 scrollY
+		 bindscrolltolower="loadMore"
+		>
+			<view
+			 wx:for="{{showMemberList}}"
+			 wx:key="id"
+			 class="memberItem"
+			 data-item="{{item}}"
+			 bindtap="onClickMember"
+			>
+				<view class="avatarContainer">
+					<image
+					 wx:if="{{!!item.avatar}}"
+					 src="{{item.avatar}}"
+					 class="avatar"
+					 mode="aspectFill"
+					/>
+					<view class="defaultAvatar avatar" wx:else>{{item.defaultAvatar}}</view>
+				</view>
+				<view class="detail">
+					<view class="detailTitle {{mainVenueId === item.endpointId || item.roleType === EROLE.ORGANIZER || item.roleType === EROLE.HOST ? '' : 'centerTitle'}}">
+						<view class="memberName {{mainVenueId === item.endpointId || item.roleType === EROLE.ORGANIZER || item.roleType === EROLE.HOST ? '' : 'singleMemberName'}}">{{item.name}}</view>
+						<view wx:if="{{currentEndpointId === item.id}}" class="selfLabel">(我)</view>
+					</view>
+					<!-- 有主持人/主会场标识 -->
+					<view class="detailLabel" wx:if="{{mainVenueId === item.endpointId || item.roleType === EROLE.ORGANIZER || item.roleType === EROLE.HOST || (presenter ? item.endpointId === presenter : item.endpointId === fixFirstEndpointId)}}">
+						<view class="hostLabel" wx:if="{{item.roleType === EROLE.ORGANIZER || item.roleType === EROLE.HOST}}">主持人</view>
+						<view wx:if="{{item.endpointId === mainVenueId}}" class="mainVenueLabel">主会场</view>
+						<view wx:if="{{presenter ? item.endpointId === presenter : item.endpointId === fixFirstEndpointId}}" class="mainScreenLabel">主画面</view>
+					</view>
+				</view>
+				<view class="statusIcon">
+					<view class="audioLabel">
+						<image src="{{item.isAudioMute ? '../../../images/screen-audio-mute.png' : '../../../images/screen-audio-unmute.png'}}" />
+					</view>
+					<view class="moreLabel speakerLabel">
+						<image src="../../../images/more-arrow.svg" />
+					</view>
+				</view>
+			</view>
+		</scroll-view>
+	</view>
+</view>
+
